@@ -1,0 +1,236 @@
+create database TOMAS;
+use TOMAS;
+
+create table empleado (
+codigo int auto_increment primary key,
+nid varchar(9),
+nombre varchar (100),
+apellido varchar (100),
+apellido2 varchar (100),
+codigo_dpto int (10)
+);
+create table departamento (
+codigo int primary key,
+nombre varchar (100),
+presupuesto double,
+gastos double
+);
+
+INSERT INTO empleado VALUES(1, '32481596F', 'Aarón', 'Rivero', 'Gómez', 1);
+INSERT INTO empleado VALUES(2, 'Y5575632D', 'Adela', 'Salas', 'Díaz', 2);
+INSERT INTO empleado VALUES(3, 'R6970642B', 'Adolfo', 'Rubio', 'Flores', 3);
+INSERT INTO empleado VALUES(4, '77705545E', 'Adrián', 'Suárez', NULL, 4);
+INSERT INTO empleado VALUES(5, '17087203C', 'Marcos', 'Loyola', 'Méndez', 5);
+INSERT INTO empleado VALUES(6, '38382980M', 'María', 'Santana', 'Moreno', 1);
+INSERT INTO empleado VALUES(7, '80576669X', 'Pilar', 'Ruiz', NULL, 2);
+INSERT INTO empleado VALUES(8, '71651431Z', 'Pepe', 'Ruiz', 'Santana', 3);
+INSERT INTO empleado VALUES(9, '56399183D', 'Juan', 'Gómez', 'López', 2);
+INSERT INTO empleado VALUES(10, '46384486H', 'Diego','Flores', 'Salas', 5);
+
+INSERT INTO departamento VALUES(1, 'Desarrollo', 120000, 6000);
+INSERT INTO departamento VALUES(2, 'Sistemas', 150000, 21000);
+INSERT INTO departamento VALUES(3, 'Recursos Humanos', 280000, 25000);
+INSERT INTO departamento VALUES(4, 'Contabilidad', 110000, 3000);
+INSERT INTO departamento VALUES(5, 'I+D', 375000, 380000);
+INSERT INTO departamento VALUES(6, 'Proyectos', 0, 0);
+INSERT INTO departamento VALUES(7, 'Publicidad', 0, 1000);
+
+/* PUNTO 1Lista el primer apellido de todos los empleados.
+
+select 
+a.apellido
+from
+empleado as a*/
+
+/* PUNTO 2. Lista el primer apellido de los empleados eliminando los apellidos que estén
+repetidos.
+
+select distinct
+a.apellido
+from
+empleado as a*/
+
+/* PUNTO 3 Lista todas las columnas de la tabla empleado.
+
+select
+*
+from
+empleado */
+
+/* PUNTO 4 . Lista el nombre y los apellidos de todos los empleados
+
+select
+e.nombre,
+e.apellido,
+e.apellido2
+from
+empleado as e */
+
+/* PUNTO 5  Lista el código de los departamentos de los empleados que aparecen en la
+tabla empleado.
+
+select
+e.nid
+from
+empleado as e*/
+
+/* PUNTO 7 Lista el nombre y apellidos de los empleados en una única columna.
+
+select 
+concat(nombre, ' ' ,apellido, ' ' ,apellido2) as nombre_completo
+from
+empleado*/
+
+/* PUNTO 8 Lista el nombre y apellidos de los empleados en una única columna,
+convirtiendo todos los caracteres en mayúscula
+
+select 
+upper(concat(nombre, ' ' ,apellido, ' ' ,apellido2)) as nombre_completo
+from
+empleado*/
+
+/* PUNTO 9 . Lista el nombre y apellidos de los empleados en una única columna,
+convirtiendo todos los caracteres en minúscula
+
+select 
+lower(concat(nombre, ' ' ,apellido, ' ' ,apellido2)) as nombre_completo
+from
+empleado*/
+
+/* PUNTO 10 Lista el nombre de cada departamento y el valor del presupuesto actual del
+que dispone. Para calcular este dato tendrá que restar al valor del presupuesto
+inicial (columna presupuesto) los gastos que se han generado (columna gastos).
+Tenga en cuenta que en algunos casos pueden existir valores negativos. Utilice
+un alias apropiado para la nueva columna columna que está calculando.
+
+select 
+d.nombre,
+d.presupuesto,
+d.gastos,
+concat (d.presupuesto - d.gastos) as valor_neto
+from departamento as d */
+
+/* PUNTO 11 Y 12 .Lista el nombre de los departamentos y el valor del presupuesto actual
+ordenado de forma ascendente.
+
+select 
+d.nombre,
+d.presupuesto,
+d.gastos,
+concat (d.presupuesto - d.gastos) as valor_neto
+from 
+departamento as d
+order by
+valor_neto ASC DESC */
+
+/* PUNTO 14 Lista los apellidos y el nombre de todos los empleados, ordenados de forma
+alfabética tendiendo en cuenta en primer lugar sus apellidos y luego su
+nombre.
+
+select 
+concat(apellido, '  ' ,apellido2, '  ' , nombre) as nombre_completo
+from
+empleado
+order by 
+nombre_completo ASC
+*/
+
+/* PUNTO 15 Devuelve una lista con el nombre y el presupuesto, de los 3 departamentos
+que tienen mayor presupuesto. 
+
+select 
+d.nombre,
+d.presupuesto
+from 
+departamento as d
+order by
+presupuesto DESC LIMIT 3 OFFSET 0;
+*/
+
+/* PUNTO 16 Devuelve una lista con el nombre y el presupuesto, de los 3 departamentos
+que tienen menor presupuesto
+
+select 
+d.nombre,
+d.presupuesto
+from 
+departamento as d
+order by
+presupuesto asc LIMIT 3 OFFSET 0
+*/
+
+/* PUNTO 17 Devuelve una lista con el nombre y el gasto, de los 2 departamentos que tienen
+mayor gasto.
+
+select
+concat(d.nombre, '  ' ,d.gastos)
+from
+departamento as d
+order by gastos desc limit 2 offset 0 
+*/
+
+/* PUNTO 18 .Devuelve una lista con el nombre y el gasto, de los 2 departamentos que tienen
+menor gasto.
+
+select
+concat(d.nombre, '  ' ,d.gastos)
+from
+departamento as d
+order by gastos ASC limit 2 offset 0
+*/
+
+/* PUNTO 19  .Devuelve una lista con el nombre de los departamentos y el presupuesto, de
+aquellos que tienen un presupuesto mayor o igual a 150000 euros
+
+select 
+concat(d.nombre, '  ' , d.presupuesto)
+from
+departamento as d
+where d.presupuesto >= 150000 
+*/
+
+/* PUNTO 20 .Devuelve una lista con el nombre de los departamentos y el gasto, de aquellos
+que tienen menos de 5000 euros de gastos.
+
+select 
+concat(d.nombre, '  ' , d.gastos)
+from
+departamento as d
+where d.gastos < 5000
+*/
+
+/*PUNTO 25 Devuelve una lista con el nombre de los departamentos, gastos ypresupuesto,
+de aquellos departamentos donde los gastos sean mayores queel presupuesto
+del que disponen.
+
+select 
+concat('Nombre: ',d.nombre,'. Gasto: ',d.gastos,'. Presupuesto: ',d.presupuesto)
+from
+departamento as d
+where
+d.gastos > d.presupuesto
+*/
+
+/*PUNTO 26 Devuelve una lista con el nombre de los departamentos, gastos ypresupuesto,
+de aquellos departamentos donde los gastos sean MENORES que el presupuesto
+del que disponen.
+
+select 
+concat('Nombre: ',d.nombre,'. Gasto: ',d.gastos,'. Presupuesto: ',d.presupuesto)
+from
+departamento as d
+where
+d.gastos < d.presupuesto
+*/
+
+/*PUNTO 27 Devuelve una lista con el nombre de los departamentos, gastos y presupuesto,
+de aquellos departamentos donde los gastos sean iguales que el presupuesto
+del que disponen
+
+select 
+concat('Nombre: ',d.nombre,'. Gasto: ',d.gastos,'. Presupuesto: ',d.presupuesto)
+from
+departamento as d
+where
+d.gastos = d.presupuesto
+*/
