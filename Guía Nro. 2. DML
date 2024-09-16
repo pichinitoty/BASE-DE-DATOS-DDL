@@ -234,3 +234,64 @@ departamento as d
 where
 d.gastos = d.presupuesto
 */
+
+/*PUNTO 28 Lista todos los datos de los empleados cuyo segundo apellido sea NULL.
+
+
+select 
+*
+from
+empleado as e
+where  
+e.apellido2 is null
+*/
+
+/* PUNTO 29 Lista todos los datos de los empleados cuyo segundo apellido NO sea NULL.
+select 
+*
+from
+empleado as e
+where  
+e.apellido2 is NOT null
+*/
+
+/* PUNTO 30.Lista todos los datos de los empleados cuyo segundo apellido sea López.
+
+select 
+*
+from
+empleado as e
+where  
+e.apellido2 = 'López'
+*/
+
+/* PUNTO 31 Lista todos los datos de los empleados cuyo segundo apellido sea Díaz o Moreno. Sin utilizar el operador IN. 
+
+select 
+*
+from
+empleado as e
+where  
+e.apellido2 = 'Dìaz' or e.apellido2 = 'Moreno'
+*/
+
+/* PUNTO 33 Lista los nombres, apellidos y nif de los empleados que trabajan en el departamento 3.
+
+select
+concat('NOMBRE:  ',e.nombre, '.  APELLIDO:  ',e.apellido, '  ',e.apellido2, '.  NID:  ',e.nid)
+from
+empleado as e
+where
+e.codigo_dpto = 3
+*/
+
+
+/* PUNTO 34 Lista los nombres, apellidos y nif de los empleados que trabajan en el departamento 2,4 O 5.
+
+select
+concat('NOMBRE:  ',e.nombre, '.  APELLIDO:  ',e.apellido, '  ',e.apellido2, '.  NID:  ',e.nid)
+from
+empleado as e
+where
+e.codigo_dpto = 2 OR e.codigo_dpto = 4 OR e.codigo_dpto = 5
+*/
